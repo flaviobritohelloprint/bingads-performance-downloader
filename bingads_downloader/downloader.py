@@ -35,7 +35,7 @@ class BingReportClient(ServiceClient):
 
         self.client = super(BingReportClient, self).__init__(service='ReportingService',
                                                              authorization_data=authorization_data,
-                                                             environment='production', version='v12')
+                                                             environment='staging', version='v13')
 
 
 def download_data():
