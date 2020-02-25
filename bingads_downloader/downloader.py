@@ -15,7 +15,7 @@ from pathlib import Path
 from bingads import (AuthorizationData, OAuthAuthorization, OAuthDesktopMobileAuthCodeGrant,
                      OAuthTokenRequestException)
 from bingads.service_client import ServiceClient
-from bingads.v12.reporting.reporting_service_manager import ReportingServiceManager, time
+from bingads.v13.reporting.reporting_service_manager import ReportingServiceManager, time
 from suds import WebFault
 
 from bingads_downloader import config
