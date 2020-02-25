@@ -323,7 +323,7 @@ def build_ad_performance_request(api_client: BingReportClient,
         report_request.Aggregation = 'Yearly'
     else:
         report_request.Aggregation = 'Daily'
-    report_request.Language = 'English'
+    #report_request.Language = 'English'
     report_request.Time = set_report_time(api_client, current_date, all_time)
 
     report_columns = api_client.factory.create('ArrayOfAdPerformanceReportColumn')
