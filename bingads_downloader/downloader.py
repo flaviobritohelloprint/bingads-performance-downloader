@@ -31,7 +31,7 @@ class BingReportClient(ServiceClient):
 
         authentication_info=  OAuthDesktopMobileAuthCodeGrant(
             client_id=config.oauth2_client_id(),
-            client_secret=config.oauth2_client_secret(),
+            #client_secret=config.oauth2_client_secret(),
             env=config.environment()
         )
 
