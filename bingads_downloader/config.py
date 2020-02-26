@@ -57,5 +57,8 @@ def output_file_version() -> str:
     """A suffix that is added to output files, denoting a version of the data format"""
     return 'v4'
 
-def oauth2_account_id() -> str:
-    return 'abc233455667'
+def account_id():
+    return ['abc233455667']
+
+def customer_id() -> int:
+    return 1234567

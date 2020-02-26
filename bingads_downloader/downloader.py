@@ -31,6 +31,7 @@ class BingReportClient(ServiceClient):
         authorization_data = AuthorizationData(
             developer_token=config.developer_token(),
             account_id=config.oauth2_account_id(),
+            client_id=config.client_id(),
             authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),
                                               oauth_tokens=config.developer_token()),
         )
