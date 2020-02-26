@@ -15,7 +15,8 @@ from pathlib import Path
 from bingads import (AuthorizationData, OAuthAuthorization, OAuthDesktopMobileAuthCodeGrant,
                      OAuthTokenRequestException)
 from bingads.service_client import ServiceClient
-from bingads.v13.reporting.reporting_service_manager import ReportingServiceManager, time
+#from bingads.v13.reporting.reporting_service_manager import ReportingServiceManager, time
+from bingads.v13.reporting import *
 from suds import WebFault
 
 from bingads_downloader import config
@@ -29,7 +30,7 @@ class BingReportClient(ServiceClient):
     def __init__(self):
         authorization_data = AuthorizationData(
             developer_token=config.developer_token(),
-            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),
+            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),account_id=config.oauth2_account_id()
                                               oauth_tokens=config.developer_token()),
         )
 
@@ -76,7 +77,7 @@ def download_account_structure_data(api_client: BingReportClient):
         tmp_filepath = Path(tmp_dir, filename)
         with gzip.open(str(tmp_filepath), 'wt') as tmp_campaign_structure_file:
             header = ['AdId', 'AdTitle', 'AdGroupId', 'AdGroupName', 'CampaignId',
-                      'CampaignName', 'AccountId', 'AccountName', 'Attributes']
+                      'CampaignName', 'AccountId', 'AccountName', 'Attributes','MatchedProductsAtProductGroup','ProductGroup']
             writer = csv.writer(tmp_campaign_structure_file, delimiter="\t")
             ad_data = get_ad_data(api_client, tmp_dir)
             campaign_attributes = get_campaign_attributes(api_client, tmp_dir)
@@ -94,6 +95,8 @@ def download_account_structure_data(api_client: BingReportClient):
                       ad_data_dict['CampaignName'],
                       ad_data_dict['AccountId'],
                       ad_data_dict['AccountName'],
+                      add_data_dict['MatchedProductsAtProductGroup'],
+                      add_data_dict['ProductGroup'],
                       json.dumps(attributes)
                       ]
 
@@ -132,6 +135,9 @@ def get_ad_data(api_client: BingReportClient, tmp_dir: Path) -> {}:
               "AdDescription",
               "AdType",
               "AdLabels",
+
+              "MatchedProductsAtProductGroup",
+              "ProductGroup",
 
               "Impressions"]  # need to include impressions, otherwise API call fails??
     report_request_ad = build_ad_performance_request(api_client, current_date=None, fields=fields, all_time=True)
