@@ -30,7 +30,8 @@ class BingReportClient(ServiceClient):
     def __init__(self):
         authorization_data = AuthorizationData(
             developer_token=config.developer_token(),
-            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),account_id=config.oauth2_account_id()
+            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),
+                                              account_id=config.oauth2_account_id(),
                                               oauth_tokens=config.developer_token()),
         )
 
