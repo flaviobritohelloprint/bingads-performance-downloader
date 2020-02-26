@@ -28,12 +28,22 @@ class BingReportClient(ServiceClient):
     """
 
     def __init__(self):
+
+        authentication_info=  OAuthDesktopMobileAuthCodeGrant(
+            client_id=config.oauth2_client_id(),
+            client_secret=config.oauth2_client_secret(),
+            env=config.environment()
+        )
+
+
         authorization_data = AuthorizationData(
+            authentication=authentication_info,
+            customer_id=config.customer_id(),
+            account_id=config.account_id(),
             developer_token=config.developer_token(),
-            account_id=config.oauth2_account_id(),
-            client_id=config.client_id(),
-            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),
-                                              oauth_tokens=config.developer_token()),
+
+            #authentication = #OAuthAuthorization(client_id=config.oauth2_client_id(),
+                             #                 oauth_tokens=config.developer_token()),
         )
 
         self.client = super(BingReportClient, self).__init__(service='ReportingService',
