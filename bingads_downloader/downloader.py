@@ -78,7 +78,7 @@ def download_account_structure_data(api_client: BingReportClient):
         tmp_filepath = Path(tmp_dir, filename)
         with gzip.open(str(tmp_filepath), 'wt') as tmp_campaign_structure_file:
             header = ['AdId', 'AdTitle', 'AdGroupId', 'AdGroupName', 'CampaignId',
-                      'CampaignName', 'AccountId', 'AccountName', 'Attributes','MatchedProductsAtProductGroup','ProductGroup']
+                      'CampaignName', 'AccountId', 'AccountName', 'Attributes']
             writer = csv.writer(tmp_campaign_structure_file, delimiter="\t")
             ad_data = get_ad_data(api_client, tmp_dir)
             campaign_attributes = get_campaign_attributes(api_client, tmp_dir)
@@ -96,8 +96,7 @@ def download_account_structure_data(api_client: BingReportClient):
                       ad_data_dict['CampaignName'],
                       ad_data_dict['AccountId'],
                       ad_data_dict['AccountName'],
-                      add_data_dict['MatchedProductsAtProductGroup'],
-                      add_data_dict['ProductGroup'],
+
                       json.dumps(attributes)
                       ]
 
@@ -137,8 +136,6 @@ def get_ad_data(api_client: BingReportClient, tmp_dir: Path) -> {}:
               "AdType",
               "AdLabels",
 
-              "MatchedProductsAtProductGroup",
-              "ProductGroup",
 
               "Impressions"]  # need to include impressions, otherwise API call fails??
     report_request_ad = build_ad_performance_request(api_client, current_date=None, fields=fields, all_time=True)
