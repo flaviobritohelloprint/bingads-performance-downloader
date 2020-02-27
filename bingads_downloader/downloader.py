@@ -29,21 +29,13 @@ class BingReportClient(ServiceClient):
 
     def __init__(self):
 
-        authentication_info=  OAuthDesktopMobileAuthCodeGrant(
-            client_id=config.oauth2_client_id(),
-            #client_secret=config.oauth2_client_secret(),
-            env=config.environment()
-        )
-
-
         authorization_data = AuthorizationData(
-            authentication=authentication_info,
-            customer_id=config.customer_id(),
-            account_id=config.account_id(),
             developer_token=config.developer_token(),
-
-            #authentication = #OAuthAuthorization(client_id=config.oauth2_client_id(),
-                             #                 oauth_tokens=config.developer_token()),
+            customer_id=config.oauth2_customer_id(),
+            account_id=config.oauth2_account_id(),
+            authentication=OAuthAuthorization(client_id=config.oauth2_client_id(),
+                                              oauth_tokens=config.developer_token()
+                                              ),
         )
 
         self.client = super(BingReportClient, self).__init__(service='ReportingService',
@@ -466,6 +458,10 @@ def build_campaign_performance_request(api_client: BingReportClient,
     report_request.ReportName = 'My Campaign Performance Report'
     report_request.ReturnOnlyCompleteData = False
     report_request.Language = 'English'
+    scope = api_client.factory.create('AccountThroughCampaignReportScope')
+    scope.AccountIds=config.oauth2_account_id()
+    scope.Campaigns=None
+    report_request.Scope=scope
     if all_time:
         report_request.Aggregation = 'Yearly'
     else:
