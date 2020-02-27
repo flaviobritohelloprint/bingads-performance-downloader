@@ -334,7 +334,7 @@ def build_ad_performance_request(api_client: BingReportClient,
         report_request.Aggregation = 'Yearly'
     else:
         report_request.Aggregation = 'Daily'
-    #report_request.Language = 'English'
+
     report_request.Time = set_report_time(api_client, current_date, all_time)
 
     report_columns = api_client.factory.create('ArrayOfAdPerformanceReportColumn')
@@ -399,7 +399,7 @@ def build_keyword_performance_request(api_client: BingReportClient,
         report_request.Aggregation = 'Yearly'
     else:
         report_request.Aggregation = 'Daily'
-    report_request.Language = 'English'
+
 
     report_request.Time = set_report_time(api_client, current_date, all_time)
 
@@ -461,7 +461,7 @@ def build_campaign_performance_request(api_client: BingReportClient,
     report_request.Format = 'Csv'
     report_request.ReportName = 'My Campaign Performance Report'
     report_request.ReturnOnlyCompleteData = False
-    report_request.Language = 'English'
+
 
     if all_time:
         report_request.Aggregation = 'Yearly'
