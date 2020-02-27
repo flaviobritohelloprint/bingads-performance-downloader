@@ -63,5 +63,14 @@ def oauth2_accounts_id():
     """
     return ['111111','222222','333333']
 
-def oauth2_account_id() -> int:
-    return 1234567
+def oauth2_account_id() -> str:
+    """
+    :return: The account id associated to the  account
+    """
+    return "1234567"
+
+def oauth2_customer_id() -> str:
+    """
+    :return: The custome id associated to the  account
+    """
+    return "438958943"
