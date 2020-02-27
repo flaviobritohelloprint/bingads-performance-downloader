@@ -57,8 +57,11 @@ def output_file_version() -> str:
     """A suffix that is added to output files, denoting a version of the data format"""
     return 'v4'
 
-def account_id():
+def oauth2_accounts_id():
+    """
+    :return: A list of id of all accounts associated in Bing Ads
+    """
     return ['abc233455667']
 
-def customer_id() -> int:
+def oauth2_account_id() -> int:
     return 1234567

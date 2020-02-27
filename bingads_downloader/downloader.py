@@ -459,7 +459,7 @@ def build_campaign_performance_request(api_client: BingReportClient,
     report_request.ReturnOnlyCompleteData = False
     report_request.Language = 'English'
     scope = api_client.factory.create('AccountThroughCampaignReportScope')
-    scope.AccountIds=config.oauth2_account_id()
+    scope.AccountIds=config.oauth2_accounts_id()
     scope.Campaigns=None
     report_request.Scope=scope
     if all_time:
