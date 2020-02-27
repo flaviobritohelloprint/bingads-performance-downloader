@@ -61,7 +61,7 @@ def oauth2_accounts_id():
     """
     :return: A list of id of all accounts associated in Bing Ads
     """
-    return ['abc233455667']
+    return ['111111','222222','333333']
 
 def oauth2_account_id() -> int:
     return 1234567
